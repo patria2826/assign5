@@ -1,5 +1,5 @@
 PImage start2,  start1, treasure, fighter, enemy, end2, end1, bullet, bg1, bg2, hp;
-float bgMoving;
+float bgX;
 PFont board;
 int scoreNum = 0;
 
@@ -120,12 +120,12 @@ void draw() {
   break;
     case GAME_PLAY:
       //bg
-      image (bg2, bgMoving, 0);
-      image (bg1, bgMoving-640, 0);
-      image (bg2, bgMoving-1280, 0); 
+      image (bg2, bgX, 0);
+      image (bg1, bgX-640, 0);
+      image (bg2, bgX-1280, 0); 
       
-      bgMoving += 1;
-      bgMoving %= 1280;
+      bgX += 1;
+      bgX %= 1280;
       
       //treasure
       image (treasure, treasureX, treasureY);    
