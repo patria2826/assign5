@@ -169,10 +169,15 @@ void draw() {
       //enemy//
       switch (enemyState) { 
         case 0 :               
-          for ( int i = 0; i < 5; i++ ){
+          for (int i = 0; i < 5; i++){
             image(enemyPosition[i], enemy_straight[i][0], enemy_straight[i][1]);
             //bullet hit//
-            for (int j = 0; j < 5; j++ ){
+            for (int j = 0; j < 5; j++){
+              closestEnemy1(bulletX[j],bulletY[j]);
+              if(closestEnemy1(bulletX[j],bulletY[j])<500){
+                if(enemy_straight[i][1]<bulletY[j]){bulletY[j]--;}
+                if(enemy_straight[i][1]>bulletY[j]){bulletY[j]++;}
+              }
               if(getHit(bulletX[j], bulletY[j], bullet.width, bullet.height, enemy_straight[i][0], enemy_straight[i][1], enemy.width, enemy.height) == true && bulletLimit[j] == true){
                 for (int k = 0;  k < 5; k++){
                   hitPosition[k][0] = enemy_straight[i][0];
@@ -226,6 +231,11 @@ void draw() {
             image(enemyPosition[i], enemy_slope [i][0] , enemy_slope [i][1]);
             //bullet hit//
             for(int j = 0; j < 5; j++){
+              closestEnemy2(bulletX[j],bulletY[j]);
+              if(closestEnemy2(bulletX[j],bulletY[j])<600){
+                if(enemy_slope[i][1]<bulletY[j]){bulletY[j]--;}
+                if(enemy_slope[i][1]>bulletY[j]){bulletY[j]++;}
+              }
               if (getHit(bulletX[j], bulletY[j], bullet.width, bullet.height, enemy_slope [i][0], enemy_slope [i][1], enemy.width, enemy.height) == true && bulletLimit[j] == true){
                 for(int k = 0; k < 5; k++){
                   hitPosition [k][0] = enemy_slope [i][0];
@@ -301,6 +311,11 @@ void draw() {
             image(enemy, enemy_daimond[i][0], enemy_daimond[i][1]);     
             //bullet hit     
             for(int j = 0; j < 5; j++ ){
+              closestEnemy3(bulletX[j],bulletY[j]);
+              if(closestEnemy3(bulletX[j],bulletY[j])<600){
+                if(enemy_daimond[i][1]<bulletY[j]){bulletY[j]--;}
+                if(enemy_daimond[i][1]>bulletY[j]){bulletY[j]++;}
+              }
               if (getHit(bulletX[j], bulletY[j], bullet.width, bullet.height, enemy_daimond[i][0], enemy_daimond[i][1], enemy.width, enemy.height) == true && bulletLimit[j] == true){
                 for (int s = 0;  s < 5; s++){
                   hitPosition[s][0] = enemy_daimond [i][0];
@@ -456,4 +471,37 @@ boolean getHit(float ax, float ay, float aw, float ah, float bx, float by, float
   return true;
   }
   return false;
+}
+float closestEnemy1(float x, float y){
+  for(int i = 0; i < 5; i++){
+    if(dist(enemy_straight[i][0], enemy_straight[i][1], x, y)<895){
+      float a = dist(enemy_straight[i][0], enemy_straight[i][1], x, y);
+      println(a);
+      return a;
+    }
+  }
+  println("-1");
+  return -1;
+}
+float closestEnemy2(float x, float y){
+  for(int i = 0; i < 5; i++){
+    if(dist(enemy_slope[i][0], enemy_slope[i][1], x, y)<895){
+      float a = dist(enemy_slope[i][0], enemy_slope[i][1], x, y);
+      println(a);
+      return a;
+    }
+  }
+  println(-1);
+  return -1;
+}
+float closestEnemy3(float x, float y){
+  for(int i = 0; i < 8; i++){
+    if(dist(enemy_daimond[i][0], enemy_daimond[i][1], x, y)<895){
+      float a = dist(enemy_daimond[i][0], enemy_daimond[i][1], x, y);
+      println(a);
+      return a;
+    }
+  }
+  println(-1);
+  return -1;
 }
