@@ -476,32 +476,32 @@ float closestEnemy1(float x, float y){
   for(int i = 0; i < 5; i++){
     if(dist(enemy_straight[i][0], enemy_straight[i][1], x, y)<895){
       float a = dist(enemy_straight[i][0], enemy_straight[i][1], x, y);
-      println(a);
+      //println(a);
       return a;
     }
   }
-  println("-1");
+  //println("-1");
   return -1;
 }
 float closestEnemy2(float x, float y){
   for(int i = 0; i < 5; i++){
     if(dist(enemy_slope[i][0], enemy_slope[i][1], x, y)<895){
       float a = dist(enemy_slope[i][0], enemy_slope[i][1], x, y);
-      println(a);
+      //println(a);
       return a;
     }
   }
-  println(-1);
+  //println(-1);
   return -1;
 }
 float closestEnemy3(float x, float y){
   for(int i = 0; i < 8; i++){
     if(dist(enemy_daimond[i][0], enemy_daimond[i][1], x, y)<895){
       float a = dist(enemy_daimond[i][0], enemy_daimond[i][1], x, y);
-      println(a);
+      //println(a);
       return a;
     }
   }
-  println(-1);
+  //println(-1);
   return -1;
 }
